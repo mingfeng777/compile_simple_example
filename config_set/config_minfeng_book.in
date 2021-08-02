@@ -1,0 +1,61 @@
+menu "minfeng book"
+
+comment 'Book1'
+
+config MINFENG_BOOK1
+	bool "minfeng book 1"
+	default n
+	help
+	  This is book1 example!
+
+config BOOK1_CH1
+	bool "book1 ch1"
+	default n
+	depends on MINFENG_BOOK1
+	help
+	  This is book1 ch1
+
+config BOOK1_CH1_PROGRAM1
+	bool "book1 ch1 program 1"
+	default n
+	depends on BOOK1_CH1
+	help
+	  This is ch1 program 1
+
+config BOOK1_CH1_PROGRAM2
+	bool "book1 ch1 program 2"
+	default n
+	depends on BOOK1_CH1
+	help
+	  This is ch1 program 2
+
+comment 'book2'
+
+config MINFENG_BOOK2
+	bool "minfeng book 2"
+	default n
+	help
+	  This is book2 example!
+
+config BOOK2_CH1_INTRO
+	bool "book2 ch1 (introduction)"
+	default n
+	depends on MINFENG_BOOK2
+	help
+	  This is book2 ch1
+
+config BOOK2_CH1_PROGRAM1
+	bool "book2 ch1 program 1"
+	default n
+	depends on BOOK2_CH1_INTRO
+	help
+	  This is ch1 program 1
+
+config BOOK2_CH1_PROGRAM2
+	bool "book2 ch1 program 2"
+	default n
+	depends on BOOK2_CH1_INTRO
+	help
+	  This is ch1 program 2
+
+endmenu

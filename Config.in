@@ -1,0 +1,115 @@
+#
+# For a description of the syntax of this configuration file,
+# see scripts/kbuild/config-language.txt.
+#
+
+mainmenu "MinFeng Configuration"
+
+config HAVE_DOT_CONFIG
+	bool
+	default y
+
+######
+
+#menu "MinFeng Settings"
+
+#endmenu
+
+######
+
+#menu 'Build Options'
+
+#endmenu
+
+#######
+
+menu 'Debugging Options'
+
+config DEBUG
+	bool "Build BusyBox with extra Debugging symbols"
+	default n
+	help
+	  Say Y here if you wish to examine BusyBox internals while applets are
+	  running.  This increases the size of the binary considerably, and
+	  should only be used when doing development.  If you are doing
+	  development and want to debug BusyBox, answer Y.
+
+	  Most people should answer N.
+
+config MINFENG_STRING
+	string "minfeng string"
+	default "/minfeng/test"
+	help
+	test it
+
+endmenu
+
+#######
+
+#menu 'Installation Options'
+
+#endmenu
+
+#source libbb/Config.in
+
+#endmenu
+
+comment "comment test"
+
+config STATIC
+    bool "Build static binary (no shared libs)"
+    default n
+    help
+    If you want to build a static binary, which does not use
+    or require any shared libraries, enable this option.
+    Static binaries are larger, but do not require functioning
+    dynamic libraries to be present, which is important if used
+    as a system rescue tool.
+
+config PIE
+    bool "Build position independent executable"
+    default n
+    depends on !STATIC
+    help
+    Hardened code option. PIE binaries are loaded at a different
+    address at each invocation. This has some overhead,
+    particularly on x86-32 which is short on registers.
+
+    Most people will leave this set to 'N'.
+
+comment "learning"
+
+menu "Settings"
+
+config MF_CROSS_COMPILER_DIR
+	string "MF cross compiler dir"
+	default ""
+	help
+	If you want to build this with a cross compiler, then you
+	will need to set this to the cross-compiler prefix, for example,
+	"i386-uclibc-".
+
+	Note that CROSS_COMPILE environment variable or
+	"make CROSS_COMPILE=xxx ..." will override this selection.
+
+	Native builds leave this empty.
+
+config MF_CROSS_COMPILER_PREFIX
+	string "MF cross compiler dir"
+	default ""
+	help
+	test
+
+comment 'Installation Option ("make install" behavior)'
+
+config PREFIX
+	string "Destination path for 'make install'"
+	default "./_install"
+	help
+	Where "make install" chould install busybox binary and links
+
+endmenu
+
+
+source "config_set/config_minfeng_book.in"
+

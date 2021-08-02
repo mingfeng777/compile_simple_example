@@ -1,0 +1,46 @@
+curdir:=$(CURDIR)
+
+ifeq ($(pre_stage),)
+
+pre_stage:=1
+export pre_stage
+
+all: _dialog_tools sub-make
+	@:
+
+_exist_dir:
+	$(Q)if [ ! -d $(curdir)/build ];then \
+		mkdir -p $(curdir)/build;\
+	fi
+	$(Q)if [ ! -d $(curdir)/cp_conf ];then \
+		mkdir -p $(curdir)/cp_conf;\
+	fi
+
+_dialog_tools: _exist_dir
+	$(Q)if [ ! -f $(curdir)/build/kconfig/conf ] || [ ! -f $(curdir)/build/kconfig/mconf ]; then \
+		make -C $(curdir)/kbuild-standalone -f Makefile.sample O=$(curdir)/build -j; \
+		cp $(curdir)/build/kconfig/conf $(curdir)/cp_conf/; \
+		cp $(curdir)/build/kconfig/mconf $(curdir)/cp_conf/; \
+	fi
+
+#all: sub-make
+#	@:
+
+sub-make:
+	$(Q)$(MAKE) -C . -f Makefile.prepare
+
+else
+
+pre_stage:=2
+export pre_stage
+
+cur_files:=$(wildcard $(curdir)/cp_conf/conf $(curdir)/cp_conf/mconf)
+files_exist:= $(foreach var,conf mconf,$(if $(filter %/cp_conf/$(var),$(cur_files)),true,false))
+checkall:=$(strip $(filter-out true,$(files_exist)))
+ifneq ($(checkall),)
+$(error lost conf or mconf, checkall is $(checkall))
+endif
+all:
+	@:
+
+endif
