@@ -10,6 +10,11 @@ git clone https://github.com/WangNan0/kbuild-standalone.git
   
 make menuconfig  
 (Youd need to enter the cross compile tools dir and prefix)  
+-> Settings  
+---> cross compiler  
+---> cross compiler prefix  
 (install path (This item must be cautious))  
+-> Settings  
+---> Destination path for 'make install'  
   
 make   
