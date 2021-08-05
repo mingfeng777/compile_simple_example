@@ -95,7 +95,7 @@ config MF_CROSS_COMPILER_DIR
 	Native builds leave this empty.
 
 config MF_CROSS_COMPILER_PREFIX
-	string "MF cross compiler dir"
+	string "MF cross compiler prefix"
 	default ""
 	help
 	test
