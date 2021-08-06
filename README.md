@@ -17,4 +17,10 @@ make menuconfig
 -> Settings  
 ---> Destination path for 'make install'  
   
-make   
+make  
+  
+####################################################################  
+  
+toolchain:  
+gcc-arm-none-eabi-10.3-2021.07 (need other option: --specs=nosys.specs)  
+  
