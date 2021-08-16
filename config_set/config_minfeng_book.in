@@ -29,29 +29,30 @@ config BOOK1_CH1_PROGRAM2
 	help
 	  This is ch1 program 2
 
-comment 'book2'
+comment 'book2_algorithm'
 
-config MINFENG_BOOK2
-	bool "minfeng book 2"
+config MINFENG_BOOK2_ALG
+	bool "minfeng book 2 algorithm"
 	default n
 	help
-	  This is book2 example!
+	  This is book2 algorithm example!
 
 config BOOK2_CH1_INTRO
 	bool "book2 ch1 (introduction)"
 	default n
-	depends on MINFENG_BOOK2
+	depends on MINFENG_BOOK2_ALG
 	help
-	  This is book2 ch1
+	  This is book2 algorithm ch1 introduction
 
-config BOOK2_CH1_PROGRAM1
-	bool "book2 ch1 program 1"
+config BOOK2_CH1_INTRO_PROGRAM1_FIBONACCI
+	bool "book2 ch1 program 1 Fibonacci number"
 	default n
 	depends on BOOK2_CH1_INTRO
 	help
-	  This is ch1 program 1
+	  This is ch1 introduction program 1 about Fibonacci number.
+	  There are two methods, dynamic programming and recursive.
 
-config BOOK2_CH1_PROGRAM2
+config BOOK2_CH1_INTRO_PROGRAM2
 	bool "book2 ch1 program 2"
 	default n
 	depends on BOOK2_CH1_INTRO
