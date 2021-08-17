@@ -1,7 +1,7 @@
 include ./makefile.table_name
 #include ../../.config
 
-config_tmp = $(shell grep "^CONFIG_BOOK2" ../../.config | grep "_CH[0-9]*_" | grep "_PROGRAM[0-9]*=y")
+config_tmp = $(shell grep "^CONFIG_BOOK2" ../../.config | grep "_CH[0-9]*_" | grep "_PROGRAM[0-9]*" | grep "=y" | sed -e 's/\(.*_PROGRAM[0-9]*\).*/\1=y/g')
 dir_virtual_set = $(foreach i,$(config_tmp),$(shell echo "$i" | awk -F "_CH" '{print $$2}' | awk -F "_" '{print $$1}'),$(shell echo "$i" | awk -F "_PROGRAM" '{print $$2}' | awk -F "=" '{print $$1}'))
 
 dir_path_set = $(foreach i,$(dir_virtual_set),$(CH$(shell echo "$i" | awk -F "," '{print $$1}'))/$(PROG$(shell echo "$i" | awk -F "," '{print $$2}')))
